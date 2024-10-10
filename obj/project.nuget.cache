@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "FP0/GJ8d4No=",
+  "success": true,
+  "projectFilePath": "C:\\Projects\\DemoContainerApp\\DemoContainerApp.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\ciduruer\\.nuget\\packages\\microsoft.visualstudio.azure.containers.tools.targets\\1.21.0\\microsoft.visualstudio.azure.containers.tools.targets.1.21.0.nupkg.sha512"
+  ],
+  "logs": []
+}
