@@ -54,11 +54,9 @@ jobs:
              cluster-name: ${{ secrets.CLUSTER_NAME }}
           
         - name: Deploys application
-          uses: Azure/k8s-deploy@dd4bbd13a5abd2fc9ca8bdcb8aee152bb718fa78
+          uses: Azure/k8s-deploy@v4
           with:
             manifests: |
              demoapp.yaml
             images: |
               ${{ secrets.REGISTRY_LOGIN_SERVER }}/${{ secrets.PROJECT_NAME }}:${{ github.sha }}
-            imagepullsecrets: |
-              ${{ secrets.PROJECT_NAME }}
