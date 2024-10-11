@@ -1,3 +1,9 @@
+#ACR + ACI
+#https://learn.microsoft.com/en-us/azure/container-instances/container-instances-github-action
+
+#AKS
+#https://docs.github.com/en/actions/use-cases-and-examples/deploying/deploying-to-azure-kubernetes-service
+
 on: [push]
 name: Linux_Container_Workflow
 
@@ -35,3 +41,33 @@ jobs:
             registry-password: ${{ secrets.REGISTRY_PASSWORD }}
             name: aci-sampleapp
             location: 'west us'
+            
+    #AKS Work is starting
+    
+        - name: Gets K8s context
+          uses: azure/aks-set-context@94ccc775c1997a3fcfbfbce3c459fec87e0ab188
+          with:
+              creds: ${{ secrets.AZURE_CREDENTIALS }}
+              resource-group: ${{ env.RESOURCE_GROUP }}
+              cluster-name: ${{ env.CLUSTER_NAME }}
+          id: login
+    
+        - name: Configure deployment
+          uses: azure/k8s-bake@61041e8c2f75c1f01186c8f05fb8b24e1fc507d8
+          with:
+            renderEngine: 'helm'
+            helmChart: ${{ env.CHART_PATH }}
+            overrideFiles: ${{ env.CHART_OVERRIDE_PATH }}
+            overrides: |
+              replicas:2
+            helm-version: 'latest'
+          id: bake
+
+        - name: Deploys application
+          uses: Azure/k8s-deploy@dd4bbd13a5abd2fc9ca8bdcb8aee152bb718fa78
+          with:
+            manifests: ${{ steps.bake.outputs.manifestsBundle }}
+            images: |
+              ${{ env.AZURE_CONTAINER_REGISTRY }}.azurecr.io/${{ env.PROJECT_NAME }}:${{ github.sha }}
+            imagepullsecrets: |
+              ${{ env.PROJECT_NAME }}
