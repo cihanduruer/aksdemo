@@ -45,11 +45,13 @@ jobs:
     #AKS Work is starting
     
         - name: Gets K8s context
-          uses: azure/aks-set-context@94ccc775c1997a3fcfbfbce3c459fec87e0ab188
+          uses: azure/login@v2
           with:
-              resource-group: ${{ secrets.RESOURCE_GROUP }}
-              cluster-name: ${{ secrets.CLUSTER_NAME }}
-          id: login
+             creds: ${{ secrets.AZURE_CREDENTIALS }}
+        - uses: azure/aks-set-context@v4
+          with:
+             resource-group: ${{ secrets.RESOURCE_GROUP }}
+             cluster-name: ${{ secrets.CLUSTER_NAME }}
           
         - name: Deploys application
           uses: Azure/k8s-deploy@dd4bbd13a5abd2fc9ca8bdcb8aee152bb718fa78
