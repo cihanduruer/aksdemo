@@ -28,3 +28,4 @@ C:\Projects\DemoContainerApp\obj\Debug\net8.0\refint\DemoContainerApp.dll
 C:\Projects\DemoContainerApp\obj\Debug\net8.0\DemoContainerApp.pdb
 C:\Projects\DemoContainerApp\obj\Debug\net8.0\DemoContainerApp.genruntimeconfig.cache
 C:\Projects\DemoContainerApp\obj\Debug\net8.0\ref\DemoContainerApp.dll
+C:\Projects\DemoContainerApp\obj\Debug\net8.0\DemoContainerApp.sourcelink.json

@@ -16,3 +16,7 @@ obj/Debug/net8.0/DemoContainerApp.AssemblyInfo.cs
 obj/Debug/net8.0/DemoContainerApp.AssemblyInfoInputs.cache
 .vs/DemoContainerApp/CopilotIndices/0.2.1657.32929/SemanticSymbols.db-shm
 *.cache
+/obj
+/bin
+/.vs
+/obj
